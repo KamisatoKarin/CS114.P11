@@ -1,20 +1,11 @@
 import numpy as np
 
-def normalize_data(X):
-    return (X - np.mean(X)) / np.std(X)
-
-def ridge_regression(X, y, alpha=1e5):
-    X = np.column_stack((np.ones(X.shape[0]), X))
-    I = np.eye(X.shape[1])
-    I[0, 0] = 0 
-    coefficients = np.linalg.inv(X.T.dot(X) + alpha * I).dot(X.T).dot(y)
-    return coefficients[1], coefficients[0]
-
 def linear_regression(X, y):
-    X_normalized = normalize_data(X)
-    a_norm, b_norm = ridge_regression(X_normalized, y)
+    X = np.column_stack((np.ones(X.shape[0]), X))
     
-    return a_norm, b_norm
+    theta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
+    
+    return theta[1], theta[0] 
 
 def main():
     X = []
@@ -34,7 +25,9 @@ def main():
     y = np.array(y)
 
     a, b = linear_regression(X, y)
+
     print(f"{a} {b}")
 
 if __name__ == "__main__":
     main()
+
