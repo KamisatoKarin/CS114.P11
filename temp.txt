@@ -11,4 +11,4 @@
 
 cat input1.txt | python temp.py
 
-
+cat input6.txt | python Lr_onevariable.py
