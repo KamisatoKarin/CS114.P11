@@ -1,31 +1,38 @@
 import numpy as np
-import pandas as pd
 import sys
-import io
 
 def linear_regression(X, y):
     n = len(X)
-    sum_x = np.sum(X)
-    sum_y = np.sum(y)
-    sum_xy = np.sum(X * y)
-    sum_x2 = np.sum(X * X)
+    X_mean = np.mean(X)
+    y_mean = np.mean(y)
     
-    a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x )
-    b = (sum_y - a * sum_x) / n
+    SS_xy = np.dot(X - X_mean, y - y_mean)
+    SS_xx = np.dot(X - X_mean, X - X_mean)
+    
+    a = SS_xy / SS_xx
+    b = y_mean - a * X_mean
     
     return a, b
 
 def main():
-    input_data = sys.stdin.read().strip()
-    if not input_data:
+    X = []
+    y = []
+    
+    for line in sys.stdin:
+        if line.strip():
+            x, y_val = map(float, line.strip().split(','))
+            X.append(x)
+            y.append(y_val)
+    
+    if not X or not y:
         return
-    data = pd.read_csv(io.StringIO(input_data), header=None)
-    X = data[0].values
-    y = data[1].values
+    
+    X = np.array(X)
+    y = np.array(y)
     
     a, b = linear_regression(X, y)
     
-    print(a, b)
+    print(f"{a} {b}")
 
 if __name__ == "__main__":
     main()
