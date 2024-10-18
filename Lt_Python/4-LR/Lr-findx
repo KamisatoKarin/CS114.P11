@@ -1,0 +1,68 @@
+import sys
+import math
+
+def linear_regression(X, y):
+    n = len(X)
+    sum_x = sum_y = sum_xy = sum_x_squared = 0
+    sum_log2x = sum_xlog2x = sum_ylog2x = sum_log2x_squared = 0
+    
+    for x, y_val in zip(X, y):
+        log2x = math.log2(max(x, 1e-10))
+        sum_x += x
+        sum_y += y_val
+        sum_xy += x * y_val
+        sum_x_squared += x * x
+        sum_log2x += log2x
+        sum_xlog2x += x * log2x
+        sum_ylog2x += y_val * log2x
+        sum_log2x_squared += log2x * log2x
+    
+    matrix = [
+        [sum_x_squared, sum_xlog2x, sum_x],
+        [sum_xlog2x, sum_log2x_squared, sum_log2x],
+        [sum_x, sum_log2x, n]
+    ]
+    vector = [sum_xy, sum_ylog2x, sum_y]
+    
+    # Giải hệ phương trình tuyến tính bằng phương pháp Cramer
+    det = (matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+           - matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0])
+           + matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]))
+    
+    if abs(det) < 1e-10:
+        return 0, 0, sum_y / n  # Trả về giá trị mặc định nếu ma trận suy biến
+    
+    det_a = (vector[0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+             - matrix[0][1] * (vector[1] * matrix[2][2] - matrix[1][2] * vector[2])
+             + matrix[0][2] * (vector[1] * matrix[2][1] - matrix[1][1] * vector[2]))
+    
+    det_b = (matrix[0][0] * (vector[1] * matrix[2][2] - matrix[1][2] * vector[2])
+             - vector[0] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0])
+             + matrix[0][2] * (matrix[1][0] * vector[2] - vector[1] * matrix[2][0]))
+    
+    det_c = (matrix[0][0] * (matrix[1][1] * vector[2] - vector[1] * matrix[2][1])
+             - matrix[0][1] * (matrix[1][0] * vector[2] - vector[1] * matrix[2][0])
+             + vector[0] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]))
+    
+    a = det_a / det
+    b = det_b / det
+    c = det_c / det
+    
+    return a, b, c
+
+def main():
+    X = []
+    y = []
+    
+    for line in sys.stdin:
+        x, y_val = map(float, line.split(','))
+        X.append(x)
+        y.append(y_val)
+    
+    a, b, c = linear_regression(X, y)
+    
+    sys.stdout.write(f"{a}*x + {b}*math.log2(x) + {c}")
+
+if __name__ == "__main__":
+    main()
+
