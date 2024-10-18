@@ -2,9 +2,9 @@ import sys
 import math
 
 def gauss_jordan(matrix, vector):
+    # Giải hệ phương trình bằng phương pháp khử Gauss-Jordan
     n = len(matrix)
-    for i in range(n):
-        # Tìm phần tử pivot
+    for i in range(n):  
         max_element = abs(matrix[i][i])
         max_row = i
         for k in range(i + 1, n):
@@ -12,19 +12,14 @@ def gauss_jordan(matrix, vector):
                 max_element = abs(matrix[k][i])
                 max_row = k
 
-        # Hoán đổi hàng tối đa với hàng hiện tại
         matrix[i], matrix[max_row] = matrix[max_row], matrix[i]
         vector[i], vector[max_row] = vector[max_row], vector[i]
 
-        # Làm cho phần tử chéo bằng 1
         pivot = matrix[i][i]
-        if abs(pivot) < 1e-10:
-            return None  # Ma trận suy biến
         for j in range(i, n):
             matrix[i][j] /= pivot
         vector[i] /= pivot
 
-        # Làm cho các phần tử khác trong cột bằng 0
         for k in range(n):
             if k != i:
                 factor = matrix[k][i]
@@ -40,7 +35,7 @@ def linear_regression(X, y):
     sum_log2x = sum_xlog2x = sum_ylog2x = sum_log2x_squared = 0
     
     for x, y_val in zip(X, y):
-        log2x = math.log2(max(x, 1e-10))
+        log2x = math.log2(x)
         sum_x += x
         sum_y += y_val
         sum_xy += x * y_val
@@ -59,10 +54,16 @@ def linear_regression(X, y):
     
     result = gauss_jordan(matrix, vector)
     
-    if result is None:
-        return 0, 0, sum_y / n  # Trả về giá trị mặc định nếu ma trận suy biến
-    
     return result[0], result[1], result[2]
+
+def mse(X, y, a, b, c):
+    n = len(X)
+    sum_squared_errors = 0
+    for x, y_val in zip(X, y):
+        predicted_y = a * x + b * math.log2(x) + c
+        squared_error = (y_val - predicted_y) ** 2
+        sum_squared_errors += squared_error
+    return sum_squared_errors / n
 
 def main():
     X = []
@@ -74,8 +75,11 @@ def main():
         y.append(y_val)
     
     a, b, c = linear_regression(X, y)
+    mse_value = mse(X, y, a, b, c)
     
     sys.stdout.write(f"{a}*x + {b}*math.log2(x) + {c}")
+    sys.stdout.write("\n")
+    sys.stdout.write(f"MSE: {mse_value}")
 
 if __name__ == "__main__":
     main()
