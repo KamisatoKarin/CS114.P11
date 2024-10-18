@@ -68,7 +68,8 @@ def main():
     
     a, b, c, d = linear_regression(X, y)
     
-    sys.stdout.write(f"{a}*x^4 + {b}*x^2 + {c}*x + {d}")
+    output = f"{a}*x*math.pow(x, 3) + {b}*x*math.pow(x, 1) + {c}*x + {d}"
+    sys.stdout.write(output + "\n")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,66 @@
+
+Processing Lt_Python/4-LR/input/input1.txt
+Bang 2: MSE va thoi gian thuc thi
+Method                                            MSE              Time (s)
+------------------------------  ---------------------  --------------------
+Lr-findx^4.Lrx-lu               0.001528700808567051   0.01126718521118164
+Lr-findx^4.Lrx-inverse          0.0015287008085670519  0.013539552688598633
+Lr-findx^4.Lrx-gauss-jordan     0.001528700808567052   0.007570981979370117
+Lr-findx^4.Lrx-direct-solution  0.0015287008085670532  0.013697624206542969
+Lr-findx^4.Lrx-cramer           0.0015287008085670573  0.008081436157226562
+
+
+Processing Lt_Python/4-LR/input/input2.txt
+Bang 2: MSE va thoi gian thuc thi
+Method                                             MSE             Time (s)
+------------------------------  ----------------------  -------------------
+Lr-findx^4.Lrx-direct-solution  0.00012227840947238837  0.29006433486938477
+Lr-findx^4.Lrx-inverse          0.00012227840947238866  0.44931626319885254
+Lr-findx^4.Lrx-cramer           0.00012227840947238896  0.08808374404907227
+Lr-findx^4.Lrx-lu               0.00012227840947239024  0.1726388931274414
+Lr-findx^4.Lrx-gauss-jordan     0.00012227840947239043  0.1040947437286377
+
+
+Processing Lt_Python/4-LR/input/input3.txt
+Bang 2: MSE va thoi gian thuc thi
+Method                                            MSE              Time (s)
+------------------------------  ---------------------  --------------------
+Lr-findx^4.Lrx-direct-solution  0.003401854431865196   0.032607078552246094
+Lr-findx^4.Lrx-gauss-jordan     0.0034018544318652044  0.014708995819091797
+Lr-findx^4.Lrx-lu               0.0034018544318652117  0.020295143127441406
+Lr-findx^4.Lrx-inverse          0.003401854431865293   0.03895115852355957
+Lr-findx^4.Lrx-cramer           0.0034018544318656176  0.014010190963745117
+
+
+Processing Lt_Python/4-LR/input/input4.txt
+Bang 2: MSE va thoi gian thuc thi
+Method                                           MSE              Time (s)
+------------------------------  --------------------  --------------------
+Lr-findx^4.Lrx-lu               0.014338098382469702  0.01091766357421875
+Lr-findx^4.Lrx-gauss-jordan     0.014338098382469706  0.007834911346435547
+Lr-findx^4.Lrx-direct-solution  0.014338098382522535  0.01484227180480957
+Lr-findx^4.Lrx-cramer           0.014338098791110478  0.007247447967529297
+Lr-findx^4.Lrx-inverse          0.014338108567484954  0.02164459228515625
+
+
+Processing Lt_Python/4-LR/input/input5.txt
+Bang 2: MSE va thoi gian thuc thi
+Method                                           MSE               Time (s)
+------------------------------  --------------------  ---------------------
+Lr-findx^4.Lrx-gauss-jordan     0.058685112523634696  0.0
+Lr-findx^4.Lrx-lu               0.05868511252363506   0.0010156631469726562
+Lr-findx^4.Lrx-direct-solution  0.05868511252375064   0.0
+Lr-findx^4.Lrx-cramer           0.05868511254173368   0.0
+Lr-findx^4.Lrx-inverse          0.05868514266116562   0.0
+
+
+Processing Lt_Python/4-LR/input/input6.txt
+Bang 2: MSE va thoi gian thuc thi
+Method                                           MSE    Time (s)
+------------------------------  --------------------  ----------
+Lr-findx^4.Lrx-gauss-jordan     0.01805793441402005          0.0
+Lr-findx^4.Lrx-cramer           0.01805793441402067          0.0
+Lr-findx^4.Lrx-lu               0.018057934414020673         0.0
+Lr-findx^4.Lrx-direct-solution  0.018057934414020864         0.0
+Lr-findx^4.Lrx-inverse          0.018057934414024517         0.0
+
