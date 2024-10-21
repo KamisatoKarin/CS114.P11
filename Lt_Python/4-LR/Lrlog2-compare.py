@@ -3,7 +3,6 @@ import time
 import importlib
 from tabulate import tabulate
 
-# Danh sách các phương pháp cần so sánh
 methods = [
     "Lr-findlog2.Lr-cholesky",
     "Lr-findlog2.Lr-gauss-seidel",
